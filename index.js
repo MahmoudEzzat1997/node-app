@@ -21,7 +21,7 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
   const newUser = req.body;
   res.status(201).json({ message: 'User created', user: newUser });
-});
+});   
 
 // Start the server
 app.listen(port, () => {
