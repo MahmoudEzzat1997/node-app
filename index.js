@@ -1,15 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
-app.use(express.json()); // To parse JSON bodies
+// ✅ Use Azure-assigned port in production
+const port = process.env.PORT || 3000;
 
-// Basic GET endpoint
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Welcome to my REST API');
 });
 
-// GET all users (dummy example)
 app.get('/users', (req, res) => {
   res.json([
     { id: 1, name: 'Mahmoud' },
@@ -17,15 +17,11 @@ app.get('/users', (req, res) => {
   ]);
 });
 
-// POST create user
 app.post('/users', (req, res) => {
   const newUser = req.body;
   res.status(201).json({ message: 'User created', user: newUser });
-});   
-  
-// Start the server
-app.listen(port, () => {
-  console.log(`🚀 API is running at http://localhost:${port}`);
-  console.log(`🚀 API is running at http://localhost:${port}`);
+});
 
+app.listen(port, () => {
+  console.log(`✅ Server is running on port ${port}`);
 });
